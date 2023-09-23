@@ -6,14 +6,28 @@ date: "September 23,2023"
 
 # problem 1
 
-```{r setup}
+```{r setup & overview of the variable }
 library(moderndive)
 data("early_january_weather")
 early_january_weather
-nrow("early_january_weather")
+nrow(early_january_weather)
+ncol(early_january_weather)
+mean(early_january_weather$temp)
 ```
 There are 15 variables in this dataset, including origin, year, month, day, hour, temp, dewp, humid, wind_dir,wind_speed, wind_gust,precip, pressure, visib, and time_hour.
 
 1 varible is character: Origin;  3 varibles are integer: year, month, day, hour; 9 variables are double-precision(with 2 decimal values): temp, dewp, humid, wind_dir,wind_speed, wind_gust,precip, pressure, visib; 1 variable is dates and times: time_hour
 
-```{r }
+There are 358 rows and 15 columns in this dataset. 
+
+The mean temperature is 39.58212
+
+```{r make a scatterplot}
+library(tidyverse)
+ggplot(early_january_weather,aes(x=time_hour, color=humid, y=temp))+geom_point()
+```
+The average temperature and humid is getting higher as days go by, but the relationship fluctuates. 
+
+```{r save the scatterplot}
+ggsave("temp_humid_time.png")
+
