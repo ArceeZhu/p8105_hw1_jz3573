@@ -1,0 +1,19 @@
+---
+title: "p8105_hw1_jz3573"
+output: html_document
+date: "September 23,2023"
+---
+
+# problem 1
+
+```{r setup}
+library(moderndive)
+data("early_january_weather")
+early_january_weather
+nrow("early_january_weather")
+```
+There are 15 variables in this dataset, including origin, year, month, day, hour, temp, dewp, humid, wind_dir,wind_speed, wind_gust,precip, pressure, visib, and time_hour.
+
+1 varible is character: Origin;  3 varibles are integer: year, month, day, hour; 9 variables are double-precision(with 2 decimal values): temp, dewp, humid, wind_dir,wind_speed, wind_gust,precip, pressure, visib; 1 variable is dates and times: time_hour
+
+```{r }
