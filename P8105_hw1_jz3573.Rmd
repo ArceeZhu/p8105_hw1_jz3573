@@ -4,7 +4,10 @@ output: html_document
 date: "September 23,2023"
 ---
 
-# problem 1
+# Problem 1
+This problem focuses the use of inline R code, plotting, and the behavior of ggplot for variables of different types.
+
+#### setup & have an overview of the variable
 
 ```{r setup & overview of the variable }
 library(moderndive)
@@ -22,12 +25,29 @@ There are 358 rows and 15 columns in this dataset.
 
 The mean temperature is 39.58212
 
+#### Make a scatterplot 
 ```{r make a scatterplot}
 library(tidyverse)
 ggplot(early_january_weather,aes(x=time_hour, color=humid, y=temp))+geom_point()
 ```
-The average temperature and humid is getting higher as days go by, but the relationship fluctuates. 
+The average temperature and humid is getting higher as time goes by, but these positive relationships fluctuate. 
 
+#### Save the scatterplot 
 ```{r save the scatterplot}
 ggsave("temp_humid_time.png")
+```
 
+# Problem 2
+This problem is intended to emphasize variable types and introduce coercion; some awareness of how R treats numeric, character, and factor variables is necessary for working with these data types in practice.
+
+#### Create a dataframe
+
+```{r create a dataframe}
+df=tibble(
+  vec_num=rnorm(10,sd=1),
+  vec_logic=vec_num>0,
+  vec_char=c("today","is","rainy","continously", "My","shirt","and", "pants", "get","wet"),
+  vec_factor=factor(c("red","blue","green","red","green","blue","blue","green","red","green"))
+)
+
+df
