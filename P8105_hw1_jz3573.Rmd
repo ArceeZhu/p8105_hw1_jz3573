@@ -1,14 +1,19 @@
 ---
-title: "p8105_hw1_jz3573"
-output: html_document
+title: "P8105_HW1_jz3573"
 date: "September 23,2023"
+author: "Jiangyuan Zhu"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    
+
 ---
 
 # Problem 1
 This problem focuses the use of inline R code, plotting, and the behavior of ggplot for variables of different types.
 
-#### Setup & Have an overview of the variable
-
+## Setup & Have an overview of the variable
 ```{r setup & overview of the variable }
 library(moderndive)
 data("early_january_weather")
@@ -25,23 +30,24 @@ There are 358 rows and 15 columns in this dataset.
 
 The mean temperature is 39.58212
 
-#### Make a scatterplot 
+## Make a scatterplot 
 ```{r make a scatterplot}
 library(tidyverse)
 ggplot(early_january_weather,aes(x=time_hour, color=humid, y=temp))+geom_point()
 ```
 The average temperature and humid is getting higher as time goes by, but these positive relationships fluctuate. 
 
-#### Save the scatterplot 
+## Save the scatterplot 
 ```{r save the scatterplot}
 ggsave("temp_humid_time.png")
 ```
 
+
+
 # Problem 2
 This problem is intended to emphasize variable types and introduce coercion; some awareness of how R treats numeric, character, and factor variables is necessary for working with these data types in practice.
 
-#### Create a dataframe
-
+## Create a dataframe
 ```{r create a dataframe}
 df=tibble(
   vec_num=rnorm(10,sd=1),
@@ -62,8 +68,7 @@ mean(pull(df,vec_factor))
 ```
 Numeric and logical variables have means. Character and factor variables cannot be taken for mean. 
 
-####  Convert logic,charater and factor variables into numeric variables
-
+## Convert variables into numeric variables
 ```{r convert into numeric, eval=FALSE}
 as.numeric(pull(df,vec_logic))
 as.numeric(pull(df,vec_char))
