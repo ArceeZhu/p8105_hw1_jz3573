@@ -359,7 +359,7 @@ display: none;
 <p>This problem focuses the use of inline R code, plotting, and the
 behavior of ggplot for variables of different types.</p>
 <div id="setup-have-an-overview-of-the-variable" class="section level4">
-<h4>setup &amp; have an overview of the variable</h4>
+<h4>Setup &amp; Have an overview of the variable</h4>
 <pre class="r"><code>library(moderndive)
 data(&quot;early_january_weather&quot;)
 early_january_weather</code></pre>
@@ -432,22 +432,39 @@ practice.</p>
   vec_logic=vec_num&gt;0,
   vec_char=c(&quot;today&quot;,&quot;is&quot;,&quot;rainy&quot;,&quot;continously&quot;, &quot;My&quot;,&quot;shirt&quot;,&quot;and&quot;, &quot;pants&quot;, &quot;get&quot;,&quot;wet&quot;),
   vec_factor=factor(c(&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;red&quot;,&quot;green&quot;))
-)
-
-df</code></pre>
-<pre><code>## # A tibble: 10 × 4
-##    vec_num vec_logic vec_char    vec_factor
-##      &lt;dbl&gt; &lt;lgl&gt;     &lt;chr&gt;       &lt;fct&gt;     
-##  1   0.652 TRUE      today       red       
-##  2  -0.611 FALSE     is          blue      
-##  3   0.194 TRUE      rainy       green     
-##  4   1.78  TRUE      continously red       
-##  5  -1.59  FALSE     My          green     
-##  6  -1.35  FALSE     shirt       blue      
-##  7   2.10  TRUE      and         blue      
-##  8  -0.106 FALSE     pants       green     
-##  9  -0.805 FALSE     get         red       
-## 10   1.33  TRUE      wet         green</code></pre>
+)</code></pre>
+</div>
+<div id="take-the-mean-of-each-variables" class="section level4">
+<h4>Take the mean of each variables</h4>
+<pre class="r"><code>mean(pull(df,vec_num))</code></pre>
+<pre><code>## [1] 0.0009789907</code></pre>
+<pre class="r"><code>mean(pull(df,vec_logic))</code></pre>
+<pre><code>## [1] 0.5</code></pre>
+<pre class="r"><code>mean(pull(df,vec_char))</code></pre>
+<pre><code>## Warning in mean.default(pull(df, vec_char)): argument is not numeric or
+## logical: returning NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>mean(pull(df,vec_factor))</code></pre>
+<pre><code>## Warning in mean.default(pull(df, vec_factor)): argument is not numeric or
+## logical: returning NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>Numeric and logical variables have means. Character and factor
+variables cannot be taken for mean.</p>
+</div>
+<div id="convert-logiccharater-and-factor-variables-into-numeric-variables" class="section level4">
+<h4>Convert logic,charater and factor variables into numeric
+variables</h4>
+<pre class="r"><code>as.numeric(pull(df,vec_logic))
+as.numeric(pull(df,vec_char))
+as.numeric(pull(df,vec_factor))</code></pre>
+<p>The factor variable, color, and the logic variable can be converted
+into number, and characters variable cannot be converted into number in
+this way. As a result, “mean” function can take the mean of logic
+variables. And after factor variable,color, being converting into
+numeric variables using as.numeric, it can also have a mean, as shown
+below.</p>
+<pre class="r"><code>mean(as.numeric(pull(df,vec_factor)))</code></pre>
+<pre><code>## [1] 2</code></pre>
 </div>
 </div>
 

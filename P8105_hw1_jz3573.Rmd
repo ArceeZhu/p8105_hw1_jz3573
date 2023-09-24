@@ -7,7 +7,7 @@ date: "September 23,2023"
 # Problem 1
 This problem focuses the use of inline R code, plotting, and the behavior of ggplot for variables of different types.
 
-#### setup & have an overview of the variable
+#### Setup & Have an overview of the variable
 
 ```{r setup & overview of the variable }
 library(moderndive)
@@ -49,5 +49,28 @@ df=tibble(
   vec_char=c("today","is","rainy","continously", "My","shirt","and", "pants", "get","wet"),
   vec_factor=factor(c("red","blue","green","red","green","blue","blue","green","red","green"))
 )
+```
 
-df
+
+#### Take the mean of each variables
+
+```{r take the mean }
+mean(pull(df,vec_num))
+mean(pull(df,vec_logic))
+mean(pull(df,vec_char))
+mean(pull(df,vec_factor))
+```
+Numeric and logical variables have means. Character and factor variables cannot be taken for mean. 
+
+####  Convert logic,charater and factor variables into numeric variables
+
+```{r convert into numeric, eval=FALSE}
+as.numeric(pull(df,vec_logic))
+as.numeric(pull(df,vec_char))
+as.numeric(pull(df,vec_factor))
+```
+
+The factor variable, color, and the logic variable can be converted into number, and characters variable cannot be converted into number in this way. As a result, "mean" function can take the mean of logic variables. And after factor variable,color, being converting into numeric variables using as.numeric, it can also have a mean, as shown below. 
+
+```{r  }
+mean(as.numeric(pull(df,vec_factor)))
